@@ -19,6 +19,7 @@ public:
 	HashMap(int size); //Define size
 	void insert(const T& data);
 	bool search(const T& data);
+	void remove(const T& data);
 private:
 	int hash(typename std::enable_if<std::is_arithmetic<T>::value, T>::type data);
 	int size;
@@ -43,6 +44,13 @@ void HashMap<T>::insert(const T& data)
 {
 	int idx = hash(data);
 	v[idx].push_back(data);
+}
+
+template<typename T>
+void HashMap<T>::remove(const T& data)
+{
+	int idx = hash(data);
+	v[idx].remove(data);
 }
 
 template<typename T>
@@ -97,4 +105,6 @@ int main()
 	cout<<"Search for 9: "<<hm.search(9)<<endl;
 	cout<<"Search for 20: "<<hm.search(20)<<endl;
 	cout<<"Search for 101: "<<hm.search(101)<<endl;
+	hm.remove(9);
+	cout<<"Search for 9: "<<hm.search(9)<<endl;
 }
