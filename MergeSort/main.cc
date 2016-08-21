@@ -69,7 +69,7 @@ int main()
 	vector<int> v;
 	cout<<"Array:  ";
 	v.push_back(23);
-for(int i = 0; i < 25; ++i)
+	for(int i = 0; i < 25; ++i)
 	{
 		int d = rand() % 100 + 1;
 		v.push_back(d);
