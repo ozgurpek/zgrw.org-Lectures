@@ -83,6 +83,7 @@ int main()
 		{
 			cout<<*itl<<" - "<<*itu<<endl;
 			itl++;
+			itu--;
 		}
 	}
 }

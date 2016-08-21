@@ -22,6 +22,7 @@ public:
 	HashMap(int size); //Define size
 	void insert(const T& data);
 	bool search(const T& data);
+	void remove(const T& data);
 private:
 	int hash(typename std::enable_if<std::is_arithmetic<T>::value, T>::type data);
 	int size;
@@ -53,7 +54,16 @@ bool HashMap<T>::search(const T& data)
 {
 	int idx = hash(data);
 	auto it = find(v[idx].begin(), v[idx].end(), data);
-	return it != v[idx].end(); //check if it is in the list or not and return the result
+	bool res = it != v[idx].end(); //check if it is in the list or not and return the result
+	remove(data);
+	return res;
+}
+
+template<typename T>
+void HashMap<T>::remove(const T& data)
+{
+	int idx = hash(data);
+	v[idx].remove(data);
 }
 
 template<typename T>
