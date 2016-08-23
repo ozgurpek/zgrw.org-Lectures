@@ -6,6 +6,36 @@
 
 using namespace std;
 
+vector<int> merge(const vector<int>& p1, const vector<int>& p1, int nend, int end)
+{
+	int i = 0;
+	int j = 0;
+	vector<int> vn;
+	while( i < nend && j < end - nend)
+	{
+		if(p1[i] > p2[j])
+		{
+			vn.push_back(p2[j]);
+			++j;
+		}
+		else
+		{
+			vn.push_back(p1[i]);
+			++i;
+		}
+	}
+	while( i < nend) //if not finished
+	{
+		vn.push_back(p1[i]);
+		++i;
+	}
+	while( j < end - nend) //because second array might be bigger
+	{
+		vn.push_back(p2[j]);
+		++j;
+	}
+	return vn;
+}
 
 vector<int> mergeSort(const vector<int>& v)
 {
@@ -27,33 +57,8 @@ vector<int> mergeSort(const vector<int>& v)
 		
 		p1 = mergeSort(p1);
 		p2 = mergeSort(p2);
-		i = 0;
-		j = 0;
-		vector<int> vn;
-		while( i < nend && j < end - nend)
-		{
-			if(p1[i] > p2[j])
-			{
-				vn.push_back(p2[j]);
-				++j;
-			}
-			else
-			{
-				vn.push_back(p1[i]);
-				++i;
-			}
-		}
-		while( i < nend) //if not finished
-		{
-			vn.push_back(p1[i]);
-			++i;
-		}
-		while( j < end - nend) //because second array might be bigger
-		{
-			vn.push_back(p2[j]);
-			++j;
-		}
-		return vn;
+		
+		return merge(p1, p2, nend, end);
 	}
 	else
 	{
