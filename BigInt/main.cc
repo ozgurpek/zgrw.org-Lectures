@@ -104,65 +104,65 @@ void bigInt::doubleMe()
 	}
 }
 
-	bigInt bigInt::karatsuba(bigInt &lhs, bigInt &rhs)
+bigInt bigInt::karatsuba(bigInt &lhs, bigInt &rhs)
+{
+	
+	
+	bigInt t1, t2;
+	t1.end = 0;
+	t2.end = 0;
+	int over = 0;
+	int i, j;
+	for(i = 0; i <= end; ++i)
 	{
-		
-		
-		bigInt t1, t2;
 		t1.end = 0;
-		t2.end = 0;
-		int over = 0;
-		int i, j;
-		for(i = 0; i <= end; ++i)
+		for(j = 0; j <= rhs.end; ++j)
 		{
-			t1.end = 0;
-			for(j = 0; j <= rhs.end; ++j)
-			{
-				int a = val[i] * rhs.val[j];
-				a += over;
-				over = a / 10;
-				a %= 10;
-				t1.val[j] = a;
-			}
-			t1.end = j - 1;
-			if(over != 0)
-			{
-				t1.val[j] = over;
-				t1.end++;
-			}
-			t1 * i;
-			bigInt s = t2 + t1;
-			t2 = s;
+			int a = val[i] * rhs.val[j];
+			a += over;
+			over = a / 10;
+			a %= 10;
+			t1.val[j] = a;
 		}
-		return t2;
-		//AB * CD = (B*D) + [(A+B)(C+D) - B*D - A*C]*10^n + A*C*10^2n
-		/*if(lhs.end <= 10 || rhs.end <= 10)
+		t1.end = j - 1;
+		if(over != 0)
 		{
-			return bigInt(lhs.getVal() * rhs.getVal());
+			t1.val[j] = over;
+			t1.end++;
 		}
-		int mx = max(lhs.end, rhs.end);
-		int mid = mx / 2;
-		bigInt low1, low2, high1, high2;
-		partialCopy(low1, lhs, 0, mid);
-		partialCopy(low2, rhs, 0, mid);
-		partialCopy(high1, lhs, mid + 1, lhs.end);
-		partialCopy(high1, lhs, mid + 1, rhs.end);
-		bigInt bd = karatsuba(low1, low2);
-		bigInt ac = karatsuba(high1, high2);
-		bigInt sum1 = low1 + high1;
-		bigInt sum2 = low2 + high2;
-		bigInt abcd = karatsuba(sum1, sum2);
-		bigInt middle = (abcd - bd - ac);
-		middle*mid;
-		ac * (2 * mid);
-		return bd +  middle + ac; //integer multiplications actually are like 10 ^ mid...*/
+		t1 * i;
+		bigInt s = t2 + t1;
+		t2 = s;
 	}
-
-
-	bigInt bigInt::operator*(bigInt &rhs)
+	return t2;
+	//AB * CD = (B*D) + [(A+B)(C+D) - B*D - A*C]*10^n + A*C*10^2n
+	/*if(lhs.end <= 10 || rhs.end <= 10)
 	{
-		return karatsuba(*this, rhs);
+		return bigInt(lhs.getVal() * rhs.getVal());
 	}
+	int mx = max(lhs.end, rhs.end);
+	int mid = mx / 2;
+	bigInt low1, low2, high1, high2;
+	partialCopy(low1, lhs, 0, mid);
+	partialCopy(low2, rhs, 0, mid);
+	partialCopy(high1, lhs, mid + 1, lhs.end);
+	partialCopy(high1, lhs, mid + 1, rhs.end);
+	bigInt bd = karatsuba(low1, low2);
+	bigInt ac = karatsuba(high1, high2);
+	bigInt sum1 = low1 + high1;
+	bigInt sum2 = low2 + high2;
+	bigInt abcd = karatsuba(sum1, sum2);
+	bigInt middle = (abcd - bd - ac);
+	middle*mid;
+	ac * (2 * mid);
+	return bd +  middle + ac; //integer multiplications actually are like 10 ^ mid...*/
+}
+
+
+bigInt bigInt::operator*(bigInt &rhs)
+{
+	return karatsuba(*this, rhs);
+}
 
 bigInt bigInt::operator*(int rhs) //this will only recive powers of 10
 {
