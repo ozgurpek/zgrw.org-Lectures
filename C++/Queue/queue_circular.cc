@@ -34,7 +34,6 @@ void insert (queue &q, const int &d)
 {
 	if(!isFull(q))
 	{
-		q.data[q.end + 1] = d;
 		if(isEmpty(q))
 			q.beg = q.end;
 		q.end++;
@@ -46,6 +45,7 @@ void insert (queue &q, const int &d)
 		{
 			q.end = 0;
 		}
+		q.data[q.end] = d;
 	}
 }
 
