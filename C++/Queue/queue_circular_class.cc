@@ -46,7 +46,6 @@ void queue<T>::insert (const T &d)
 {
 	if(!isFull())
 	{
-		data[end + 1] = d;
 		if(isEmpty())
 			beg = end;
 		end++;
@@ -58,6 +57,7 @@ void queue<T>::insert (const T &d)
 		{
 			end = 0;
 		}
+		data[end] = d;
 	}
 }
 
