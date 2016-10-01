@@ -9,7 +9,7 @@ public class maxseq
 		System.out.println("Max seq is: " + res);
 	}
 	
-	public int maxSeq(int []arr)
+	public int maxSeq(final int []arr)
 	{
 		int sumSoFar = 0;
 		int sumMax = 0;
