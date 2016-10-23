@@ -2,13 +2,13 @@ import java.util.*;
 
 class Sorter
 {
-	private static Integer []arr;
-	public static void sort(Integer[] array)
+	private  Integer []arr;
+	public  void sort(Integer[] array)
 	{
 		arr = array;
 		sort(0, arr.length);
 	}
-	private static void sort(int beg, int end)
+	private  void sort(int beg, int end)
 	{
 		if(end > beg + 1)
 		{
@@ -42,7 +42,7 @@ class Sorter
 
 	}
 	
-	public static void swap ( Integer a, Integer b)
+	public  void swap ( Integer a, Integer b)
 	{
 		Integer temp = new Integer(arr[a].intValue());
 		arr[a] = arr[b];

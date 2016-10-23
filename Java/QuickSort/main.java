@@ -5,6 +5,7 @@ public class main
 	public static void main(String... args)
 	{
 		Integer[] arr = new Integer[25];
+		Sorter qs = new Sorter();
 		Random rnd = new Random();
 		for(int i = 0; i < 25; ++i)
 		{
@@ -14,7 +15,7 @@ public class main
 		}
 		System.out.println(" ");
 		System.out.println(" ");
-		Sorter.sort(arr);
+		qs.sort(arr);
 		for(Integer a : arr)
 		{
 			System.out.print(a + " ");
