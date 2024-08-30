@@ -76,7 +76,7 @@ class BloomDatabase {
 function tester(db: BloomDatabase, str: string) {
     console.log(`testing: ${str}`);
     let res = db.lookup(str);
-    console.log(`lookup ${res ? 'found' : 'not found'} the ${str} in db`);
+    console.log(`lookup ${res ? '' : 'did not '}found the ${str} in db`);
     res = db.insert(str);
     console.log(`insertion was ${res ? '' : 'not '}successdul`);
 }
