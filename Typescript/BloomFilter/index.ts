@@ -49,7 +49,7 @@ class BloomDatabase {
     }
 
     private subsAbs(str: string): number {
-        let res = 1;
+        let res = 0;
         for (let i = 0; i < str.length; ++i) {
             res -= str.charCodeAt(i);
         }
